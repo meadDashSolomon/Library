@@ -30,6 +30,13 @@ function createBookItem(book, index) {
   bookItem.appendChild(
     createBookElement("h1", `Title: ${book.title}`, "book-title")
   );
+  bookItem.appendChild(
+    createBookElement("h1", `Author: ${book.author}`, "book-author")
+  );
+  bookItem.appendChild(
+    createBookElement("h1", `Pages: ${book.pages}`, "book-pages")
+  );
+  books.insertAdjacentElement("afterbegin", bookItem);
 }
 
 function renderBooks() {

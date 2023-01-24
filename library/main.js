@@ -28,12 +28,12 @@ function createBookItem(book, index) {
   bookItem.setAttribute("key", index);
   bookItem.setAttribute("class", "card book");
   bookItem.appendChild(
-    creatBookElement("h1", `Title: ${book.title}`, "book-title")
+    createBookElement("h1", `Title: ${book.title}`, "book-title")
   );
 }
 
 function renderBooks() {
   myLibrary.map((book, index) => {
-    creatBookItem(book, index);
+    createBookItem(book, index);
   });
 }

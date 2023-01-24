@@ -1,3 +1,4 @@
+//books - main div holding all the books
 const books = document.querySelector(".books");
 
 const myLibrary = [
@@ -15,8 +16,9 @@ const myLibrary = [
   },
 ];
 
+//helper function to create html elements with textcontent and classes
 function createBookElement(el, content, className) {
-  const element = document.createElement(element);
+  const element = document.createElement(el);
   element.textContent = content;
   element.setAttribute("class", className);
   return element;
@@ -44,3 +46,5 @@ function renderBooks() {
     createBookItem(book, index);
   });
 }
+
+renderBooks();

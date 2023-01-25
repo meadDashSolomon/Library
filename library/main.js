@@ -54,6 +54,8 @@ addBookForm.addEventListener("submit", (e) => {
     newBook["book-pages"],
     newBook["book-read"]
   );
+  addBookForm.reset();
+  modal.style.display = "none";
 });
 
 //array of books

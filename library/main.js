@@ -1,6 +1,12 @@
 //books - main div holding all the books
 const books = document.querySelector(".books");
-
+const addBook = document.querySelector(".add-book");
+const modal = document.querySelector("#modal");
+addBook.addEventListener("click", () => {
+  modal.style.display = "block";
+  document.querySelector(".form-title").textContent = "Add Book";
+  document.querySelector(".form-add-button").textContent = "Add";
+});
 //array of books
 let myLibrary = [];
 

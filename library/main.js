@@ -100,6 +100,16 @@ function createReadElement(bookItem, book) {
   return read;
 }
 
+function fillOutEditForm(book) {
+  modal.style.display = "block";
+  document.querySelector(".form-title").textContent = "Edit Book";
+  document.querySelector(".form-add-button").textContent = "Edit";
+  document.querySelector("#book-title").value = book.title || "";
+  document.querySelector("#book-author").value = book.author || "";
+  document.querySelector("#book-pages").value = book.pages || "";
+  document.querySelector("#book-read").value = book.read;
+}
+
 //create the edit icon w event listener
 function createEditIcon(book) {
   const editIcon = document.createElement("img");

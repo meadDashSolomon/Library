@@ -78,6 +78,11 @@ function createIcons() {
   return div;
 }
 
+function deleteBook(index) {
+  myLibrary.splice(index, 1);
+  renderBooks();
+}
+
 //Function to create all of the book content on the book dom card
 function createBookItem(book, index) {
   const bookItem = document.createElement("div");

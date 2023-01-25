@@ -36,11 +36,11 @@ function createReadElement(bookItem, book) {
     if (e.target.checked) {
       bookItem.setAttribute("class", "card book read-checked");
       book.read = true;
-      saveAndRenderBooks();
+      RenderBooks();
     } else {
       bookItem.setAttribute("class", "card book read-unchecked");
       book.read = false;
-      saveAndRenderBooks();
+      RenderBooks();
     }
   });
   if (book.read) {
@@ -107,6 +107,7 @@ function createBookItem(book, index) {
 
 //function to render all of the books
 function renderBooks() {
+  books.textContent = "";
   myLibrary.map((book, index) => {
     createBookItem(book, index);
   });

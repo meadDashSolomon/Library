@@ -2,20 +2,12 @@
 const books = document.querySelector(".books");
 
 //array of books
-const myLibrary = [
-  {
-    title: "Book1",
-    author: "me",
-    pages: "500",
-    read: true,
-  },
-  {
-    title: "Book2",
-    author: "you",
-    pages: "5000",
-    read: false,
-  },
-];
+let myLibrary = [];
+
+function addLocalStorage() {
+  myLibrary = JSON.parse(localStorage.getItem("library")) || [];
+  saveAndRenderBooks();
+}
 
 //helper function to create html elements with textcontent and classes
 function createBookElement(el, content, className) {
@@ -36,11 +28,11 @@ function createReadElement(bookItem, book) {
     if (e.target.checked) {
       bookItem.setAttribute("class", "card book read-checked");
       book.read = true;
-      RenderBooks();
+      saveAndRenderBooks();
     } else {
       bookItem.setAttribute("class", "card book read-unchecked");
       book.read = false;
-      RenderBooks();
+      saveAndRenderBooks();
     }
   });
   if (book.read) {
@@ -80,7 +72,7 @@ function createIcons() {
 
 function deleteBook(index) {
   myLibrary.splice(index, 1);
-  renderBooks();
+  saveAndRenderBooks();
 }
 
 //Function to create all of the book content on the book dom card
@@ -118,5 +110,10 @@ function renderBooks() {
   });
 }
 
+function saveAndRenderBooks() {
+  localStorage.setItem("library", JSON.stringify(myLibrary));
+  renderBooks();
+}
+
 //render on page load
-renderBooks();
+addLocalStorage();

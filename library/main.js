@@ -17,6 +17,45 @@ addBook.addEventListener("click", () => {
   document.querySelector(".form-title").textContent = "Add Book";
   document.querySelector(".form-add-button").textContent = "Add";
 });
+
+function Book(title, author, pages, read) {
+  this.title = title;
+  this.author = author;
+  this.pages = pages;
+  this.read = read;
+  this.id = Math.floor(Math.random() * 10000000000);
+}
+
+Math.floor(Math.random() * 10000000000);
+function addBookToLibrary(title, author, pages, read) {
+  myLibrary.push(new Book(title, author, pages, read));
+  saveAndRenderBooks();
+}
+
+const addBookForm = document.querySelector(".add-book-form");
+addBookForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  const data = new FormData(e.target);
+  let newBook = {};
+  for (let [name, value] of data) {
+    if (name === "book-read") {
+      newBook["book-read"] = true;
+    } else {
+      newBook[name] = value || "";
+    }
+  }
+  if (!newBook["book-read"]) {
+    newBook["book-read"] = false;
+  }
+  addBookToLibrary(
+    newBook["book-title"],
+    newBook["book-author"],
+    newBook["book-pages"],
+    newBook["book-read"]
+  );
+});
+
 //array of books
 let myLibrary = [];
 

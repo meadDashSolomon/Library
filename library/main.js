@@ -36,16 +36,16 @@ function createReadElement(bookItem, book) {
     if (e.target.checked) {
       bookItem.setAttribute("class", "card book read-checked");
       book.read = true;
-      renderBooks();
+      saveAndRenderBooks();
     } else {
       bookItem.setAttribute("class", "card book read-unchecked");
       book.read = false;
-      renderBooks();
+      saveAndRenderBooks();
     }
   });
   if (book.read) {
     input.checked = true;
-    bookItem.setAttribute("class", "read-checked");
+    bookItem.setAttribute("class", "card book read-checked");
   }
   read.appendChild(input);
   return read;
@@ -56,13 +56,13 @@ function createEditIcon(book) {
   const editIcon = document.createElement("img");
   editIcon.src = "../icons/pencil.svg";
   editIcon.setAttribute("class", "edit-icon");
-  editIcon.addEventListener("click", (e) => {
-    console.log(book);
+  editIcon.addEventListener("click", () => {
+    fillOutEditForm(book);
   });
   return editIcon;
 }
 
-//create dummy icons. for show, they don't do anything
+//create dummy icons. they don't do anything
 function createIcons() {
   const div = createBookElement("div", "", "icons");
   const icon1 = document.createElement("img");
@@ -78,7 +78,7 @@ function createIcons() {
   return div;
 }
 
-//function to create all of the book content on the book dom card
+//Function to create all of the book content on the book dom card
 function createBookItem(book, index) {
   const bookItem = document.createElement("div");
   bookItem.setAttribute("id", index);
@@ -97,6 +97,10 @@ function createBookItem(book, index) {
   bookItem.appendChild(createBookElement("button", "X", "delete"));
   bookItem.appendChild(createIcons());
   bookItem.appendChild(createEditIcon(book));
+
+  bookItem.querySelector(".delete").addEventListener("click", () => {
+    deleteBook(index);
+  });
 
   books.insertAdjacentElement("afterbegin", bookItem);
 }

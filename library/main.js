@@ -25,7 +25,7 @@ function createBookElement(el, content, className) {
   return element;
 }
 
-//helper function to create an input with event listener for if a book is read
+//helper function to create an input checkbox with event listener for if a book is read
 function createReadElement(bookItem, book) {
   const read = document.createElement("div");
   read.setAttribute("class", "book-read");
@@ -51,6 +51,7 @@ function createReadElement(bookItem, book) {
   return read;
 }
 
+//create the edit icon w event listener
 function createEditIcon(book) {
   const editIcon = document.createElement("img");
   editIcon.src = "../icons/pencil.svg";
@@ -61,6 +62,7 @@ function createEditIcon(book) {
   return editIcon;
 }
 
+//create dummy icons. for show, they don't do anything
 function createIcons() {
   const div = createBookElement("div", "", "icons");
   const icon1 = document.createElement("img");
@@ -76,6 +78,7 @@ function createIcons() {
   return div;
 }
 
+//function to create all of the book content on the book dom card
 function createBookItem(book, index) {
   const bookItem = document.createElement("div");
   bookItem.setAttribute("id", index);
@@ -98,10 +101,12 @@ function createBookItem(book, index) {
   books.insertAdjacentElement("afterbegin", bookItem);
 }
 
+//function to render all of the books
 function renderBooks() {
   myLibrary.map((book, index) => {
     createBookItem(book, index);
   });
 }
 
+//render on page load
 renderBooks();

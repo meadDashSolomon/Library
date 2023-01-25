@@ -1,6 +1,7 @@
 //books - main div holding all the books
 const books = document.querySelector(".books");
 
+//array of books
 const myLibrary = [
   {
     title: "Book1",
@@ -24,6 +25,7 @@ function createBookElement(el, content, className) {
   return element;
 }
 
+//helper function to create an input with event listener for if a book is read
 function createReadElement(bookItem, book) {
   const read = document.createElement("div");
   read.setAttribute("class", "book-read");
@@ -34,11 +36,11 @@ function createReadElement(bookItem, book) {
     if (e.target.checked) {
       bookItem.setAttribute("class", "card book read-checked");
       book.read = true;
-      renderAndSave();
+      renderBooks();
     } else {
       bookItem.setAttribute("class", "card book read-unchecked");
       book.read = false;
-      renderAndSave();
+      renderBooks();
     }
   });
   if (book.read) {
@@ -50,7 +52,13 @@ function createReadElement(bookItem, book) {
 }
 
 function createEditIcon(book) {
-  return createBookElement("div", null, "");
+  const editIcon = document.createElement("img");
+  editIcon.src = "../icons/pencil.svg";
+  editIcon.setAttribute("class", "edit-icon");
+  editIcon.addEventListener("click", (e) => {
+    console.log(book);
+  });
+  return editIcon;
 }
 
 function createIcons() {
